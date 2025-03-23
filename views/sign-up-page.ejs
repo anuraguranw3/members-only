@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <%- include("header") %>
+        <form class="sign-up-form" action="/sign-up" method="POST">
+
+            <% if (locals.errors && locals.errors.length> 0) { %>
+                <div class="error-messages">
+                    <ul>
+                        <% errors.forEach(error=> { %>
+                            <li>
+                                <%= error.msg %>
+                            </li>
+                            <% }); %>
+                    </ul>
+                </div>
+                <% } %>
+
+                    <label for="first-name">First Name*</label>
+                    <input type="text" name="first-name" id="first-name" placeholder="First Name" required>
+
+                    <label for="last-name">Last Name*</label>
+                    <input type="text" name="last-name" id="last-name" placeholder="Last Name" required>
+
+                    <label for="email">Email*</label>
+                    <input type="email" name="email" id="email" placeholder="Email" required>
+
+                    <label for="password">Password*</label>
+                    <div>
+                        <input type="password" name="password" id="password" placeholder="Password" required>
+                        <button type="button" class="toggle-btn" id="toggle-password">Show</button>
+                    </div>
+
+                    <label for="confirm-password">Confirm Password*</label>
+                    <div>
+                        <input type="password" name="confirm-password" id="confirm-password"
+                            placeholder="Confirm Password" required>
+                        <button type="button" class="toggle-btn" id="toggle-confirm-password">Show</button>
+                    </div>
+
+                    <button type="submit">Sign UP</button>
+
+                    <h3>Already have a account? <a href="/log-in">Log In</a></h3>
+        </form>
+
+
+        <script>
+            const togglePassword = document.getElementById('toggle-password');
+            const passwordField = document.getElementById('password');
+
+            togglePassword.addEventListener('click', function () {
+                const type = passwordField.type === 'password' ? 'text' : 'password';
+                passwordField.type = type;
+
+                togglePassword.textContent = type === 'password' ? 'Show' : 'Hide';
+            });
+            const toggleConfirmPassword = document.getElementById('toggle-confirm-password');
+            const confirmPasswordField = document.getElementById('confirm-password');
+
+            toggleConfirmPassword.addEventListener('click', function () {
+                const type = confirmPasswordField.type === 'password' ? 'text' : 'password';
+                confirmPasswordField.type = type;
+
+                toggleConfirmPassword.textContent = type === 'password' ? 'Show' : 'Hide';
+            });
+        </script>
+</body>
+
+</html>

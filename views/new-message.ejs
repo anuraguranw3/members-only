@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Message</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <%- include("header") %>
+        <% if (user) { %>
+            <div class="hero">
+                <h2 class="hero-text">Welcome! <%= user.first_name %>
+                        <%= user.last_name %>
+                </h2>
+                <div class="log">
+                    <h2><a href="/log-out">Log out</a></h2>
+                </div>
+            </div>
+            <% } else { %>
+                <div class="log">
+                    <h2><a href="/sign-up">Sign Up</a></h2>
+                    <h2><a href="/log-in">Log In</a></h2>
+                </div>
+                <% } %>
+
+                    <form class="new-message-form" action="/new-message" method="POST">
+                        <h2>Add New Message</h2>
+                        <label for="message-title">Message Title*</label>
+                        <input type="text" name="message-title" id="message-title" placeholder="eg-Saitama vs Garou"
+                            required>
+                        <label for="message">Message*</label>
+                        <textarea name="message" id="message"
+                            placeholder="eg-Saitama vs. Garou? Oh man, that battle is going to be legendary! Garou has that insane growth and determination, but Saitama? He’s just on a whole other level! One punch is all it takes for him to end the fight, but the build-up to that moment is always so intense. Can’t wait to see how this epic showdown goes down! Saitama’s calm, but we all know Garou's going to bring everything he’s got. Let’s go! 💥👊"
+                            required></textarea>
+                        <button type="submit">Add Message</button>
+                    </form>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <%- include("header") %>
+        <% if (locals.message) { %>
+            <h3 class="not-worthy">
+                <%= locals.message %>
+            </h3>
+            <% } else { %>
+                <form class="admin-form" action="/new-admin" method="POST">
+                    <h3>If you want to become an admin answer this simple que.</h3>
+                    <label for="ans">Might Guy can use ninjutsu or not? Type "yes" or "no"</label>
+                    <input type="text" name="ans" id="ans" placeholder="eg-yes or no">
+                    <button type="submit">Submit Answer</button>
+                </form>
+                <% } %>
+</body>
+
+</html>
